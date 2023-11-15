@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Form </title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(240, 139, 172);
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+
+}
+
+.form-side {
+    width: 45%;
+    padding: 20px;
+    border: 1px ;
+    border-radius: 5px;
+    margin-top: 100px;
+
+}
+
+.general-info {
+    background-color:white;
+    color: rgb(92, 44, 77);
+
+}
+ #first-name ,#last-name ,#Bussiness-Arena ,#employees ,#zip-code ,#place ,#phone-number ,#code {
+    padding-bottom: 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    justify-content: space-between;
+    background-color: transparent; /* Set the background color to transparent */
+    color: rgb(59, 75, 88);
+
+}
+#property {
+    padding-bottom: 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    height: 20px;
+    background-color: transparent; 
+    color: rgb(51, 70, 87);
+
+}
+.name {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+.contact-details {
+    background-color: #ce2473;
+    color: aliceblue;
+
+}
+
+form {
+    text-align: left;
+}
+
+label, input {
+    display: block;
+
+    margin: 10px 0;
+}
+
+button {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 20px;
+    border-color: white;
+    font-size: 15px;
+}
+ </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-side general-info">
+            <h2>General Information</h2>
+            <select id="property" name="title">
+                <option value="title">Title</option>
+            </select>
+                <div class="name">
+                   <input type="text" id="first-name" value="First Name" >
+                   <input type="text" id="last-name" value="Last Name" >
+                </div>
+                <select id="property" name="position">
+                    <option value="position">Position</option>
+                </select>
+                <input type="text" id="property" value="Company" >
+                <div class="name">
+                    <input type="text" id="Bussiness-Arena" value="Bussiness Arena" >
+                    <select id="employees" name="employees">
+                        <option value="employees">Employees</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="form-side contact-details">
+            <h2>Contact Details</h2>
+                <input type="text" id="property" value="Street + Nr" >
+                <input type="text" id="property" value="Additional Information" >
+                <div class="name">
+                    <input type="text" id="zip-code" value="Zip Code" >
+                    <select id="place" name="place">
+                        <option value="place">Place</option>
+                    </select>
+                </div>
+                <select id="property" name="country">
+                    <option value="country">Country</option>
+                </select>
+                <div class="name">
+                    <input type="text" id="code" value="Code +" >
+                    <input type="text" id="phone-number" value="Phone Number" >
+                 </div>
+
+                <input type="text" id="property" value="Your Email" >
+                <div class="name">
+                <input type="checkbox" id="checkbox" name="checkboxName" value="checkboxValue">
+                <label for="checkbox">I do accept the Terms and Conditionsof your site.</label>
+                </div>
+
+                <button type="button">Register Badge</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

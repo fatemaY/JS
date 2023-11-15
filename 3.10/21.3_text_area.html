@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <style>
+        #body{
+            display: flex;
+            flex-direction:column;
+        }
+        #characterCount{
+            display: none;
+        }
+        #clickButton{
+            height: 50px;
+            width: 100px;
+            margin-top: 20px;
+            justify-content: center; /* Center horizontally */
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Application</h1>
+    <div id="body">
+    <label for="applicationText">Why are you intersted in this position?</label>
+    <textarea id="applicationText" rows="5" cols="40"></textarea>
+    <p id="characterCount">Character count: 0</p>
+    <button id="clickButton" disabled>Click here!</button>
+    </div>
+
+    <script>
+        const applicationText = document.getElementById("applicationText");
+        const characterCount = document.getElementById("characterCount");
+        const clickButton = document.getElementById("clickButton");
+
+        applicationText.addEventListener("input", () => {
+            const text = applicationText.value;
+            const count = text.length;
+            characterCount.textContent = `Character count: ${count}`;
+
+            if (count >= 100) {
+                clickButton.removeAttribute("disabled");
+            } else {
+                clickButton.setAttribute("disabled", "true");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Checker</title>
+</head>
+<body>
+    <h1>Age Checker</h1>
+    <label for="ageInput">Enter your age:</label>
+    <input type="number" id="ageInput">
+    <button id="checkButton">Check</button>
+    <p id="message"></p>
+
+    <script>
+        const ageInput = document.getElementById("ageInput");
+        const checkButton = document.getElementById("checkButton");
+        const message = document.getElementById("message");
+
+        checkButton.addEventListener("click", function () {
+            const userAge = parseInt(ageInput.value);
+            if (!isNaN(userAge)) {
+                if (userAge >= 18) {
+                    message.textContent = "You can drink!";
+                    message.style.color = "green";
+                } else {
+                    message.textContent = "You're too young.";
+                    message.style.color = "red";
+                }
+            } 
+            else {
+                message.textContent = "Please enter a valid age.";
+                message.style.color = "black";
+            }
+        });
+    </script>
+</body>
+</html>

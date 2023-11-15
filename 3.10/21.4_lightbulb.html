@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightbulb</title>
+    <style>
+        body{
+            background-color: rgb(250, 250, 195);
+        }
+        #lightbulb {
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
+            margin-top: 150px;
+            margin-left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <img id="lightbulb" src="https://cdn2.iconfinder.com/data/icons/e-commerce-hand-drawn-icons/64/ecommerce_52-512.png" alt="Lightbulb" />
+
+    <script>
+        const lightbulb = document.getElementById('lightbulb');
+
+        let isLightOn = false;
+
+        function toggleLightbulb() {
+            if (isLightOn) {
+                lightbulb.src = 'https://cdn2.iconfinder.com/data/icons/e-commerce-hand-drawn-icons/64/ecommerce_52-512.png';
+            } else {
+                lightbulb.src = 'https://freepngimg.com/save/34138-idea-bulb-transparent/2368x2800';
+            }
+            isLightOn = !isLightOn;
+        }
+        lightbulb.addEventListener('click', toggleLightbulb);
+    </script>
+</body>
+</html>

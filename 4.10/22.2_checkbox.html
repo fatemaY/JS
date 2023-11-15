@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show/Hide Photo</title>
+    <style>
+        body{
+          background-color: black;
+        }
+        #photo-container {
+          display: none;
+          text-align: center;
+        }
+
+        .img {
+          max-width: 100%;
+          height: auto;
+        }
+        #check{
+            color: rgb(170, 16, 80);
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
+<body>
+    <div id="check">
+    <label for="showPhoto"> Show Minnie-Mouse Photo:</label>
+    <input type="checkbox" id="showPhoto">
+    </div>
+
+    <div id="photo-container">
+        <img src="./minne mouse.jpg" alt="Your Photo">
+    </div>
+
+    <script>
+      const showPhotoCheckbox = document.getElementById("showPhoto");
+      const photoContainer = document.getElementById("photo-container");
+      showPhotoCheckbox.addEventListener("change", function () {
+         if (showPhotoCheckbox.checked) {
+           photoContainer.style.display = "block";
+       } 
+    else {
+        photoContainer.style.display = "none";
+    }
+   });
+    </script>
+</body>
+</html>

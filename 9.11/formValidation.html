@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation Exercise</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #7c147c, #feffff);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;  
+      margin: 40px;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 90%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      transition: border 0.3s ease;
+    }
+
+    input[type="submit"] {
+      display: block;
+      margin: 0 auto;
+      background-color: rgb(104, 9, 88);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #480cd3;
+    }
+
+    input.error {
+      border: 2px solid red;
+      background-color: rgb(255, 221, 244);
+    }
+    input.success {
+      border: 2px solid rgb(28, 204, 22);
+      background-color: rgb(255, 221, 244);
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 20px;
+      transition: color 0.3s ease;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form id="userForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <div class="error-message" id="usernameError"></div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required>
+      <div class="error-message" id="emailError"></div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <div class="error-message" id="passwordError"></div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <div class="error-message" id="confirmPasswordError"></div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+    <script>
+    
+     
+        function showError(input, message) {
+          const errorContainer = document.getElementById(input.id + 'Error');
+          errorContainer.textContent = message;
+          input.classList.add('error');
+        }
+      
+        function clearError(input) {
+          const errorContainer = document.getElementById(input.id + 'Error');
+          errorContainer.textContent = '';
+          input.classList.remove('error');
+          input.classList.add('success');
+
+
+        }
+      
+        function validateForm() {
+          let isValid = true;
+          const inputFields = ['username', 'email', 'password', 'confirmPassword'];
+          inputFields.forEach((fieldName) => {
+          switch (fieldName) {
+            case 'username' :
+                const nameInput = document.getElementById('username');
+                if (nameInput.value.length < 3) {
+                showError(nameInput, 'Name must be at least 3 characters long.');
+                isValid = false;
+                } 
+                else {
+                clearError(nameInput);
+                }
+            case 'email':
+                const emailInput = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                  showError(emailInput, 'Please enter a valid email.');
+                  isValid = false;
+                } 
+                else {
+                 clearError(emailInput);
+                }
+            case 'password':
+                const passwordInput = document.getElementById('password');
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if (!passwordRegex.test(passwordInput.value)) {
+                   showError(passwordInput, 'Password must be at least 8 characters long, containing lowercase, uppercase letters, numbers, and a special character.');
+                   isValid = false;
+                } 
+                else {
+                 clearError(passwordInput);
+                }
+
+            case 'confirm-password':
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                if (confirmPasswordInput.value !== passwordInput.value) {
+                  showError(confirmPasswordInput, 'Passwords do not match.');
+                  isValid = false;
+                } 
+            else {
+                 clearError(confirmPasswordInput);
+                }
+            
+           }
+        });
+        if (isValid) {
+            alert('Form submitted successfully!');
+        }
+      }
+
+        const userForm = document.getElementById('userForm');
+        userForm.addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the default form submission behavior
+          validateForm();
+        });
+      </script>
+</body>
+</html>

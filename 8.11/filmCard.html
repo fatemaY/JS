@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Card</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #191242, #feffff);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    }
+
+    #movieCard {
+    width: 400px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    }
+
+    #cover {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    }
+
+    #title {
+    font-size: 1.5em;
+    margin: 10px 0;
+    }
+
+    #id, #genre, #director, #rating , #releaseYear, #votes{
+    font-size: 0.9em;
+    margin: 5px 0;
+    }
+
+</style>
+</head>
+<body>
+    <div id="movieCard" class="card">
+        <img id="cover" class="card-img-top" src="" alt="Movie Poster">
+        <div class="card-body">
+            <h5 id="title" class="card-title"></h5>
+            <p id="id" class="card-id"></p>
+            <p id="genre" class="card-text"></p>
+            <p id="director" class="card-text"></p>
+            <p id="rating" class="card-text"></p>
+            <p id="releaseYear" class="card-text"></p>
+            <p id="votes" class="card-text"></p>
+        </div>
+    </div>
+    
+    <script src="./film.js"></script>
+</body>
+</html>

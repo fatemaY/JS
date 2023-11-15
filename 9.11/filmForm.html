@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie List</title>
+    <style>
+        body{
+            background: linear-gradient(to bottom, #212122, #feffff);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;    
+        }
+        #add-movie-form{
+          justify-content: center;
+          align-items: center;
+          color: white;
+          margin-top: 10px;
+        }
+        #movie-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .movie {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .movie img {
+            max-width: 100px;
+        }
+        .movie-info {
+            font-weight: bold;
+        }
+        button {
+          padding: 10px 10px;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          background-color: #3e3e3f;
+          color: white;
+
+        }
+        input {
+          width: 100px;
+          padding: 2px;
+          border: 1px solid #f5f1f1;
+          border-radius: 4px;
+          margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="add-movie-form">
+        <h2>Add a New Movie</h2>
+        <label for="title">Title:</label>
+        <input type="text" id="title" required><br>
+    
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" required><br>
+    
+        <label for="director">Director:</label>
+        <input type="text" id="director" required><br>
+    
+        <label for="releaseYear">Release Year:</label>
+        <input type="number" id="releaseYear" required><br>
+    
+        <label for="rating">Rating:</label>
+        <input type="number" step="0.1" id="rating" required><br>
+    
+        <label for="img">Image URL:</label>
+        <input type="url" id="img" required><br>
+    
+        <button type="submit">Add Movie</button>
+    </form>
+    <input type="text" id="search-input" placeholder="Search by title...">
+    <button id="sort-by-title">Sort by Title</button>
+<button id="sort-by-release-year">Sort by Release Year</button>
+<button id="sort-by-rating">Sort by Rating</button>
+    <div id="movie-list">
+      
+    </div>
+
+    <script>
+        const movies = [
+        {
+    id: 1,
+    title: "The Shawshank Redemption",
+    genre: "Drama",
+    director: "Frank Darabont",
+    releaseYear: 1994,
+    rating: 9.3,
+    votes: 2345890,
+    img: "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg"
+  },
+  {
+    id: 2,
+    title: "The Godfather",
+    genre: "Crime, Drama",
+    director: "Francis Ford Coppola",
+    releaseYear: 1972,
+    rating: 9.2,
+    votes: 1620360,
+    img: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg"
+
+  },
+  {
+    id: 3,
+    title: "The Godfather: Part II",
+    genre: "Crime, Drama",
+    director: "Francis Ford Coppola",
+    releaseYear: 1974,
+    rating: 9.0,
+    votes: 1133175,
+    img: "https://m.media-amazon.com/images/M/MV5BMWMwMGQzZTItY2JlNC00OWZiLWIyMDctNDk2ZDQ2YjRjMWQ0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg"
+  },
+  {
+    id: 4,
+    title: "The Dark Knight",
+    genre: "Action, Crime, Drama",
+    director: "Christopher Nolan",
+    releaseYear: 2008,
+    rating: 9.0,
+    votes: 2303232,
+    img:"https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg"
+  },
+  {
+    id: 5,
+    title: "12 Angry Men",
+    genre: "Crime, Drama",
+    director: "Sidney Lumet",
+    releaseYear: 1957,
+    rating: 9.0,
+    votes: 689845,
+    img:"https://m.media-amazon.com/images/S/pv-target-images/b92d2865829416e35e7102a3934a2ee745f3b903a95678710442d4299d86f39c.jpg"
+  },
+        ];
+
+        const movieListContainer = document.getElementById("movie-list");
+  function showMovies(movies){
+    movieListContainer.innerHTML = '';
+    movies.forEach(movie => {
+            const movieCard = document.createElement("div");
+            movieCard.classList.add("movie");
+
+            const h2 = document.createElement("h2");
+            h2.textContent = movie.title;
+            movieCard.appendChild(h2);
+
+            const genreP = document.createElement("p");
+            genreP.textContent = `Genre: ${movie.genre}`;
+            genreP.classList.add("movie-info");
+            movieCard.appendChild(genreP);
+
+            const directorP = document.createElement("p");
+            directorP.textContent = `Director: ${movie.director}`;
+            directorP.classList.add("movie-info");
+            movieCard.appendChild(directorP);
+
+            const releaseYearP = document.createElement("p");
+            releaseYearP.textContent = `Release Year: ${movie.releaseYear}`;
+            releaseYearP.classList.add("movie-info");
+            movieCard.appendChild(releaseYearP);
+
+            const ratingP = document.createElement("p");
+            ratingP.textContent = `Rating: ${movie.rating}`;
+            ratingP.classList.add("movie-info");
+            movieCard.appendChild(ratingP);
+
+            const img = document.createElement("img");
+            img.src = movie.img;
+            img.alt = movie.title;
+            img.style.maxWidth = "100px";
+            movieCard.appendChild(img);
+
+            movieListContainer.appendChild(movieCard);
+        });
+      }
+        showMovies(movies)
+
+      const addMovieForm = document.getElementById("add-movie-form");
+      addMovieForm.addEventListener("submit", function (event){
+        event.preventDefault();
+        const title = document.getElementById("title").value;
+        const genre = document.getElementById("genre").value;
+        const director = document.getElementById("director").value;
+        const releaseYear = document.getElementById("releaseYear").value;
+        const rating = document.getElementById("rating").value;
+        const img = document.getElementById("img").value;
+   
+        const newMovie = {
+            id:movies.length + 1,
+            title,
+            genre,
+            director,
+            releaseYear,
+            rating,
+            votes:0,
+            img
+        }
+        movies.push(newMovie);
+        console.log(movies);
+        showMovies(movies);
+        addMovieForm.reset()
+        })
+        function searchMoviesByTitle() {
+        const searchInput = document.getElementById('search-input');
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
+        showMovies(filteredMovies);
+        }
+
+        const searchByTitleButton = document.getElementById('search-input');
+        searchByTitleButton.addEventListener('input', searchMoviesByTitle);
+        addMovieForm.reset()
+
+        function sortMoviesByTitle() {
+        const sortedMovies = movies.sort((a, b) => a.title.localeCompare(b.title)); 
+        showMovies(sortedMovies);
+        }
+        const sortByTitleButton = document.getElementById('sort-by-title');
+        sortByTitleButton.addEventListener('click',sortMoviesByTitle);
+
+        function sortMoviesByReleaseYear() {
+        const sortedMovies = movies.sort((a, b) => a.releaseYear - b.releaseYear); 
+        showMovies(sortedMovies);
+        }
+        const sortByReleaseYearButton = document.getElementById('sort-by-release-year');
+        sortByReleaseYearButton.addEventListener('click',sortMoviesByReleaseYear);
+        
+
+        function sortMoviesByRating() {
+        const sortedMovies = movies.sort((a, b) => a.rating - b.rating); 
+        showMovies(sortedMovies);
+        }
+        const sortByRatingButton = document.getElementById('sort-by-rating');
+        sortByRatingButton.addEventListener('click',sortMoviesByRating);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Generator</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #smiley-container {
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <label for="smileyCount">How many smileys do you want to see?</label>
+    <input type="number" id="smileyCount" min="0">
+    <button id="generateButton">submit</button>
+    <p id="error" style="color: red;"></p>
+    <div id="smiley-container"></div>
+
+    <script>
+        const generateButton = document.getElementById('generateButton');
+        const smileyContainer = document.getElementById('smiley-container');
+        const error = document.getElementById('error');
+
+        generateButton.addEventListener('click', () => {
+            const smileyCount = parseInt(document.getElementById('smileyCount').value);
+            
+            if (!isNaN(smileyCount) && smileyCount >= 0) {
+                error.textContent = ''; 
+                generateSmileys(smileyCount);
+            } 
+            else {
+                error.textContent = 'Please enter a valid non-negative number.';
+                smileyContainer.innerHTML = '';
+            }
+        });
+
+        function generateSmileys(count) {
+            const smileyHTML = '<img src="https://ih1.redbubble.net/image.1537377828.3830/st,small,507x507-pad,600x600,f8f8f8.jpg" width="50" height="50">';
+            let smileys = '';
+
+            for (let i = 0; i < count; i++) {
+                smileys += smileyHTML;
+            }
+
+            smileyContainer.innerHTML = smileys;
+        }
+    </script>
+</body>
+</html>

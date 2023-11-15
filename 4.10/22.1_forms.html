@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Confirmation</title>
+    <style>
+        #userForm , #confirmation{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            gap: 20px;
+            border: 1px solid gray;
+            text-align: center;
+            padding: 30px;
+        }
+        </style>
+</head>
+<body>
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="confirmation" style="display: none;">
+        <p id="confirmText" style= "color: red;">Please confirm your information:</p>
+        <p><strong>Name:</strong> <span id="confirmName"></span></p>
+        <p><strong>Age:</strong> <span id="confirmAge"></span></p>
+        <p><strong>Email:</strong> <span id="confirmEmail"></span></p>
+        <button id="confirmButton">Confirm</button>
+        <button id="changeInfoButton">Change Information</button>
+    </div>
+
+    <script>
+const userForm = document.getElementById("userForm");
+const confirmation = document.getElementById("confirmation");
+const confirmName = document.getElementById("confirmName");
+const confirmAge = document.getElementById("confirmAge");
+const confirmEmail = document.getElementById("confirmEmail");
+const confirmButton = document.getElementById("confirmButton");
+const changeInfoButton = document.getElementById("changeInfoButton");
+
+userForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
+    const email = document.getElementById("email").value;
+
+    confirmName.textContent = name;
+    confirmAge.textContent = age;
+    confirmEmail.textContent = email;
+    
+
+    confirmation.style.display = "block";
+});
+    
+
+confirmButton.addEventListener("click", function () {
+    alert("Congratulations! You successfully sent this form.");
+    resetForm();
+});
+
+changeInfoButton.addEventListener("click", function () {
+    confirmation.style.display = "none"; 
+    userForm.reset(); 
+});
+
+function resetForm() {
+    userForm.reset(); 
+    confirmation.style.display = "none"; 
+}
+
+    </script>
+</body>
+</html>

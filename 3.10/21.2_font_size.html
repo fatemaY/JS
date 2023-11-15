@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Size</title>
+    <style>
+        #text {
+            font-size: 20px; 
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Font Size</h1>
+    <p id="text">This is some text with adjustable font size.</p>
+    <button id="increaseButton">+</button>
+    <button id="decreaseButton">-</button>
+
+    <script>
+        const textElement = document.getElementById("text");
+        const increaseButton = document.getElementById("increaseButton");
+        const decreaseButton = document.getElementById("decreaseButton");
+        const minFontSize = 6;
+        const maxFontSize = 100;
+
+        function increaseFontSize() {
+            const currentSize = parseInt(getComputedStyle(textElement).fontSize);
+            if (currentSize < maxFontSize) {
+                textElement.style.fontSize = (currentSize + 2) + "px";
+            }
+        }
+
+        function decreaseFontSize() {
+            const currentSize = parseInt(getComputedStyle(textElement).fontSize);
+            if (currentSize > minFontSize) {
+                textElement.style.fontSize = (currentSize - 2) + "px";
+            }
+        }
+
+        increaseButton.addEventListener("click", increaseFontSize);
+        decreaseButton.addEventListener("click", decreaseFontSize);
+    </script>
+</body>
+</html>
