@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie App</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+#movieInfo {
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Movie Search</h1>
+    <form id="movieForm">
+      <label for="movieInput">Enter Movie Name:</label>
+      <input type="text" id="movieInput" required>
+      <button type="submit">Search</button>
+    </form>
+    <div id="movieInfo" class="hidden">
+      <!-- Movie information will be displayed here -->
+    </div>
+  </div>
+
+  <script src="./30.2-script.js"></script>
+</body>
+
+</html>
